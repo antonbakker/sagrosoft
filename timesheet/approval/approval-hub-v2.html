@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approval Hub v2 — Wireframes</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .wireframe { border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+  .section-label { background: #f3f4f6; padding: 4px 12px; font-size: 10px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  @media print {
+    body { padding: 0; margin: 0; background: white; }
+    .page { page-break-after: always; page-break-inside: avoid; padding: 20px; height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; }
+    .page:last-child { page-break-after: avoid; }
+    .wireframe { flex: 1; font-size: 9px; }
+    .wireframe table { font-size: 8px; }
+    h1, h2, p { margin: 0; }
+  }
+</style>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="page">
+<h1 class="text-2xl font-bold mb-2">Approval Hub v2 — Wireframes</h1>
+<p class="text-sm text-gray-500 mb-8">Two presets: Project Manager view and Line Manager view. Same page, same components, different default filters and grouping.</p>
+</div>
+
+<div class="page">
+
+<h2 class="text-lg font-bold mb-1">Preset: My Projects</h2>
+<p class="text-xs text-gray-500 mb-3">Auto-filters to projects managed by the logged-in user. Groups by Project. Shows equipment + costs per project.</p>
+
+<div class="wireframe bg-white max-w-[1400px]">
+  <!-- Header -->
+  <div class="flex items-center justify-between px-6 py-3 border-b">
+    <div>
+      <h1 class="text-base font-bold text-gray-900">Timesheet Approval</h1>
+      <p class="text-xs text-gray-400">Review and approve employee timesheets</p>
+    </div>
+    <div class="flex gap-2">
+      <button class="border rounded px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50">Export CSV</button>
+      <button class="border rounded px-3 py-1.5 text-xs font-medium text-blue-600 border-blue-200 bg-blue-50">📊 Dashboard</button>
+    </div>
+  </div>
+
+
+  <!-- Quick Filter Presets -->
+  <div class="px-6 py-2 bg-gray-50 border-b flex items-center gap-2">
+    <span class="text-[10px] font-semibold text-gray-400 uppercase mr-2">Quick:</span>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-gray-600 border bg-white hover:bg-gray-100">My Division</button>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-white bg-blue-600 border-blue-600">My Projects</button>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-gray-600 border bg-white hover:bg-gray-100">All Pending</button>
+    <span class="text-gray-300 mx-1">|</span>
+    <span class="text-[10px] text-gray-400">Active filters:</span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">Projects: 21261234, 23250084, 47260005 <button class="ml-0.5 text-blue-400">×</button></span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">Status: Submitted <button class="ml-0.5 text-blue-400">×</button></span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">2026 W26–W32 <button class="ml-0.5 text-blue-400">×</button></span>
+    <button class="ml-auto text-xs text-gray-400 hover:text-gray-600">Edit filters...</button>
+  </div>
+
+
+  <!-- KPI Strip -->
+  <div class="px-6 py-3 border-b">
+    <div class="grid grid-cols-6 gap-3">
+      <!-- Total Hours -->
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Hours</div>
+        <div class="text-lg font-bold text-gray-900">562h</div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 520h</span>
+          <span class="text-[10px] text-gray-500">🔧 480h</span>
+        </div>
+      </div>
+      <!-- Total Costs -->
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Costs</div>
+        <div class="text-lg font-bold text-gray-900">€38.4K</div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 €28.1K</span>
+          <span class="text-[10px] text-gray-500">🔧 €10.3K</span>
+        </div>
+      </div>
+      <!-- Own vs IC Hours -->
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Own / IC</div>
+        <div class="text-lg font-bold text-gray-900">490h <span class="text-amber-600 text-sm">/ 72h</span></div>
+        <div class="text-[10px] text-gray-500 mt-0.5">IC = 13%</div>
+      </div>
+      <!-- Own vs IC Costs -->
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Costs Own / IC</div>
+        <div class="text-lg font-bold text-gray-900">€33K <span class="text-amber-600 text-sm">/ €5.4K</span></div>
+        <div class="text-[10px] text-gray-500 mt-0.5">IC = 14%</div>
+      </div>
+      <!-- Counts -->
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Resources</div>
+        <div class="text-lg font-bold text-gray-900">12 <span class="text-sm text-gray-500">/ 8</span></div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 12 empl</span>
+          <span class="text-[10px] text-gray-500">🔧 8 equip</span>
+        </div>
+      </div>
+      <!-- Pending -->
+      <div class="bg-blue-50 rounded-lg p-3 text-center border border-blue-200">
+        <div class="text-[10px] font-semibold text-blue-600 uppercase">Pending</div>
+        <div class="text-lg font-bold text-blue-700">14</div>
+        <div class="text-[10px] text-blue-500 mt-0.5">timesheets to approve</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- View Controls -->
+  <div class="px-6 py-2 border-b flex items-center gap-4 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-xs text-gray-500 font-medium">Group by:</span>
+      <select class="border rounded px-2 py-1 text-xs bg-white text-gray-700">
+        <option>Project</option>
+        <option>Employee</option>
+        <option>Division</option>
+        <option>Equipment</option>
+        <option>None (flat table)</option>
+      </select>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-xs text-gray-500 font-medium">Sort:</span>
+      <select class="border rounded px-2 py-1 text-xs bg-white text-gray-700">
+        <option>Total hours ↓</option>
+        <option>Employee A-Z</option>
+        <option>Week ↓</option>
+        <option>Status</option>
+      </select>
+    </div>
+    <div class="ml-auto flex items-center gap-1">
+      <button class="px-2 py-1 text-xs rounded bg-green-600 text-white font-medium">✓ Approve all visible</button>
+    </div>
+  </div>
+
+
+  <!-- Table: Grouped by Project (Project Manager preset) -->
+  <div class="px-6 py-3">
+    <!-- Project Group 1 -->
+    <div class="border rounded-md mb-3">
+      <div class="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b cursor-pointer">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600" checked>
+          <span class="font-mono text-xs text-gray-500">21261234</span>
+          <span class="font-medium text-sm text-gray-900">Yara Sluiskil — Uitbreiden terrein</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="text-gray-500">4 employees</span>
+          <span class="text-gray-500">3 equipment</span>
+          <span class="font-bold">360h</span>
+          <span class="text-gray-500">€24.8K</span>
+          <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden" title="Budget: 47% used">
+            <div class="h-full bg-blue-500 rounded-full" style="width: 47%"></div>
+          </div>
+          <span class="text-[10px] text-gray-400">47% budget</span>
+        </div>
+      </div>
+      <!-- Entries within project -->
+      <table class="w-full text-xs">
+        <thead class="bg-gray-50/50">
+          <tr class="text-[10px] text-gray-400 uppercase">
+            <th class="px-4 py-1.5 text-left w-8"><input type="checkbox" class="w-3 h-3" checked></th>
+            <th class="px-2 py-1.5 text-left">Employee</th>
+            <th class="px-2 py-1.5 text-left">Equipment</th>
+            <th class="px-2 py-1.5 text-center">Wk</th>
+            <th class="px-2 py-1.5 text-center">Mo</th>
+            <th class="px-2 py-1.5 text-center">Tu</th>
+            <th class="px-2 py-1.5 text-center">We</th>
+            <th class="px-2 py-1.5 text-center">Th</th>
+            <th class="px-2 py-1.5 text-center">Fr</th>
+            <th class="px-2 py-1.5 text-center">Sa</th>
+            <th class="px-2 py-1.5 text-center">Su</th>
+            <th class="px-2 py-1.5 text-right">Total</th>
+            <th class="px-2 py-1.5 text-right">Cost</th>
+            <th class="px-2 py-1.5 text-center">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr class="hover:bg-blue-50/30">
+            <td class="px-4 py-2"><input type="checkbox" class="w-3 h-3" checked></td>
+            <td class="px-2 py-2 font-medium text-gray-900">Jan Bakker</td>
+            <td class="px-2 py-2 text-gray-500">3514</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">36h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€2,520</td>
+            <td class="px-2 py-2 text-center"><span class="px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-semibold">SUBMITTED</span></td>
+          </tr>
+          <tr class="hover:bg-blue-50/30">
+            <td class="px-4 py-2"><input type="checkbox" class="w-3 h-3" checked></td>
+            <td class="px-2 py-2 font-medium text-gray-900">Kees Donk</td>
+            <td class="px-2 py-2 text-gray-500">Waterwagen BT15000</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center">2</td>
+            <td class="px-2 py-2 text-center">0.5</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">2.5h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€175</td>
+            <td class="px-2 py-2 text-center"><span class="px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-semibold">SUBMITTED</span></td>
+          </tr>
+          <tr class="hover:bg-blue-50/30 border-l-2 border-l-amber-400">
+            <td class="px-4 py-2"><input type="checkbox" class="w-3 h-3"></td>
+            <td class="px-2 py-2 font-medium text-gray-900">Pieter Vos <span class="ml-1 px-1 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold rounded">IC</span></td>
+            <td class="px-2 py-2 text-gray-500">—</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">16h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€1,120</td>
+            <td class="px-2 py-2 text-center"><span class="px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-semibold">SUBMITTED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Project Group 2 (IC) -->
+    <div class="border rounded-md mb-3 border-l-4 border-l-amber-400">
+      <div class="flex items-center justify-between px-4 py-2.5 bg-amber-50/50 border-b cursor-pointer">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600">
+          <span class="px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold rounded">IC</span>
+          <span class="font-mono text-xs text-gray-500">23250084</span>
+          <span class="font-medium text-sm text-gray-900">Edisonpark — Renovatie fase 2</span>
+          <span class="text-[10px] text-gray-400">(project owned by SZV)</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="text-gray-500">1 employee</span>
+          <span class="font-bold">16h</span>
+          <span class="text-gray-500">€1,120</span>
+        </div>
+      </div>
+      <table class="w-full text-xs">
+        <tbody>
+          <tr class="hover:bg-amber-50/30">
+            <td class="px-4 py-2 w-8"><input type="checkbox" class="w-3 h-3"></td>
+            <td class="px-2 py-2 font-medium text-gray-900">Pieter Vos <span class="text-[10px] text-gray-400">(from SAZ)</span></td>
+            <td class="px-2 py-2 text-gray-500">—</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">16h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€1,120</td>
+            <td class="px-2 py-2 text-center"><span class="px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-semibold">SUBMITTED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bulk Action Bar (sticky bottom) -->
+  <div class="px-6 py-3 border-t bg-white flex items-center gap-4">
+    <span class="text-sm font-medium text-gray-700">3 selected</span>
+    <button class="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium">✓ Approve</button>
+    <button class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium">✗ Reject</button>
+    <button class="border text-gray-600 px-3 py-1.5 rounded text-sm">⬇ Export</button>
+  </div>
+</div>
+
+</div>
+
+<div class="page">
+
+<h2 class="text-lg font-bold mb-1">Preset: My Division</h2>
+<p class="text-xs text-gray-500 mb-3">Auto-filters to the manager's own division. Groups by Employee. Shows chargeability, leave, completeness.</p>
+
+<div class="wireframe bg-white max-w-[1400px]">
+  <!-- Header -->
+  <div class="flex items-center justify-between px-6 py-3 border-b">
+    <div>
+      <h1 class="text-base font-bold text-gray-900">Timesheet Approval</h1>
+      <p class="text-xs text-gray-400">Review and approve employee timesheets</p>
+    </div>
+    <div class="flex gap-2">
+      <button class="border rounded px-3 py-1.5 text-xs font-medium text-gray-600">Export CSV</button>
+      <button class="border rounded px-3 py-1.5 text-xs font-medium text-blue-600 border-blue-200 bg-blue-50">📊 Dashboard</button>
+    </div>
+  </div>
+
+  <!-- Quick Filter Presets -->
+  <div class="px-6 py-2 bg-gray-50 border-b flex items-center gap-2">
+    <span class="text-[10px] font-semibold text-gray-400 uppercase mr-2">Quick:</span>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-white bg-blue-600 border-blue-600">My Division</button>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-gray-600 border bg-white">My Projects</button>
+    <button class="px-3 py-1 rounded-full text-xs font-medium text-gray-600 border bg-white">All Pending</button>
+    <span class="text-gray-300 mx-1">|</span>
+    <span class="text-[10px] text-gray-400">Active:</span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">Division: SAZ <button class="ml-0.5 text-blue-400">×</button></span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">Status: Submitted <button class="ml-0.5 text-blue-400">×</button></span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-medium">2026 W26–W32 <button class="ml-0.5 text-blue-400">×</button></span>
+    <button class="ml-auto text-xs text-gray-400 hover:text-gray-600">Edit filters...</button>
+  </div>
+
+
+  <!-- KPI Strip (Line Manager focus) -->
+  <div class="px-6 py-3 border-b">
+    <div class="grid grid-cols-6 gap-3">
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Hours</div>
+        <div class="text-lg font-bold text-gray-900">1,240h</div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 1,240h</span>
+          <span class="text-[10px] text-gray-500">🔧 890h</span>
+        </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Costs</div>
+        <div class="text-lg font-bold text-gray-900">€86.8K</div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 €62.0K</span>
+          <span class="text-[10px] text-gray-500">🔧 €24.8K</span>
+        </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Own / IC</div>
+        <div class="text-lg font-bold text-gray-900">1,080h <span class="text-amber-600 text-sm">/ 160h</span></div>
+        <div class="text-[10px] text-gray-500 mt-0.5">IC = 13%</div>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Costs Own / IC</div>
+        <div class="text-lg font-bold text-gray-900">€75K <span class="text-amber-600 text-sm">/ €11.8K</span></div>
+        <div class="text-[10px] text-gray-500 mt-0.5">IC = 14%</div>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3 text-center">
+        <div class="text-[10px] font-semibold text-gray-400 uppercase">Resources</div>
+        <div class="text-lg font-bold text-gray-900">31 <span class="text-sm text-gray-500">/ 14</span></div>
+        <div class="flex justify-center gap-2 mt-0.5">
+          <span class="text-[10px] text-gray-500">👤 31 empl</span>
+          <span class="text-[10px] text-gray-500">🔧 14 equip</span>
+        </div>
+      </div>
+      <div class="bg-blue-50 rounded-lg p-3 text-center border border-blue-200">
+        <div class="text-[10px] font-semibold text-blue-600 uppercase">Pending</div>
+        <div class="text-lg font-bold text-blue-700">8</div>
+        <div class="text-[10px] text-blue-500 mt-0.5">timesheets to approve</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- View Controls -->
+  <div class="px-6 py-2 border-b flex items-center gap-4 bg-white">
+    <div class="flex items-center gap-2">
+      <span class="text-xs text-gray-500 font-medium">Group by:</span>
+      <select class="border rounded px-2 py-1 text-xs bg-white text-gray-700">
+        <option>Employee</option>
+        <option>Project</option>
+        <option>Division</option>
+        <option>Equipment</option>
+        <option>None (flat table)</option>
+      </select>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-xs text-gray-500 font-medium">Sort:</span>
+      <select class="border rounded px-2 py-1 text-xs bg-white text-gray-700">
+        <option>Employee A-Z</option>
+        <option>Total hours ↓</option>
+        <option>Week ↓</option>
+      </select>
+    </div>
+    <div class="ml-auto flex items-center gap-1">
+      <button class="px-2 py-1 text-xs rounded bg-green-600 text-white font-medium">✓ Approve all visible</button>
+    </div>
+  </div>
+
+  <!-- Table: Grouped by Employee (Line Manager preset) -->
+  <div class="px-6 py-3">
+    <!-- Employee Group 1 -->
+    <div class="border rounded-md mb-3">
+      <div class="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600" checked>
+          <span class="font-medium text-sm text-gray-900">Jan Bakker</span>
+          <span class="text-[10px] px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">SAZ</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="text-gray-500">3 projects</span>
+          <span class="font-bold">40h</span>
+          <span class="text-gray-500">€2,800</span>
+          <span class="text-[10px] text-green-600 font-medium">Chargeability: 90%</span>
+          <span class="text-[10px] text-gray-400">Leave: 0h</span>
+        </div>
+      </div>
+      <table class="w-full text-xs">
+        <thead class="bg-gray-50/50">
+          <tr class="text-[10px] text-gray-400 uppercase">
+            <th class="px-4 py-1.5 text-left w-8"></th>
+            <th class="px-2 py-1.5 text-left">Project</th>
+            <th class="px-2 py-1.5 text-left">Equipment</th>
+            <th class="px-2 py-1.5 text-center">Wk</th>
+            <th class="px-2 py-1.5 text-center">Mo</th>
+            <th class="px-2 py-1.5 text-center">Tu</th>
+            <th class="px-2 py-1.5 text-center">We</th>
+            <th class="px-2 py-1.5 text-center">Th</th>
+            <th class="px-2 py-1.5 text-center">Fr</th>
+            <th class="px-2 py-1.5 text-center">Sa</th>
+            <th class="px-2 py-1.5 text-center">Su</th>
+            <th class="px-2 py-1.5 text-right">Hours</th>
+            <th class="px-2 py-1.5 text-right">Cost</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-4 py-2"></td>
+            <td class="px-2 py-2"><span class="font-mono text-gray-400">21261234</span> Yara Sluiskil</td>
+            <td class="px-2 py-2 text-gray-500">3514</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">36h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€2,520</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2"></td>
+            <td class="px-2 py-2"><span class="font-mono text-gray-400">9998</span> Admin / Kantoor</td>
+            <td class="px-2 py-2 text-gray-500">—</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">4h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€280</td>
+          </tr>
+        </tbody>
+        <tfoot class="bg-gray-50/50 border-t">
+          <tr class="text-xs font-medium">
+            <td colspan="11" class="px-4 py-1.5 text-right text-gray-500">Week 28 total:</td>
+            <td class="px-2 py-1.5 text-right font-bold">40h</td>
+            <td class="px-2 py-1.5 text-right text-gray-600">€2,800</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+
+    <!-- Employee Group 2 (with leave) -->
+    <div class="border rounded-md mb-3">
+      <div class="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600">
+          <span class="font-medium text-sm text-gray-900">Peter Meijer</span>
+          <span class="text-[10px] px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">SAZ</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="text-gray-500">1 project</span>
+          <span class="font-bold">32h</span>
+          <span class="text-gray-500">€2,240</span>
+          <span class="text-[10px] text-green-600 font-medium">Chargeability: 100%</span>
+          <span class="text-[10px] text-orange-500 font-medium">Leave: 8h</span>
+        </div>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-4 py-2 w-8"></td>
+            <td class="px-2 py-2"><span class="font-mono text-gray-400">47260005</span> Zeven grond Lamb Weston</td>
+            <td class="px-2 py-2 text-gray-500">Laadschop L120H</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center">8</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">32h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€2,240</td>
+          </tr>
+          <tr class="bg-purple-50/50">
+            <td class="px-4 py-2 w-8"></td>
+            <td class="px-2 py-2"><span class="font-mono text-gray-400">9992</span> <span class="text-purple-700">Vakantie/verlof</span></td>
+            <td class="px-2 py-2 text-gray-400">—</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-purple-700">8</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold text-purple-700">8h</td>
+            <td class="px-2 py-2 text-right text-gray-400">—</td>
+          </tr>
+        </tbody>
+        <tfoot class="bg-gray-50/50 border-t">
+          <tr class="text-xs font-medium">
+            <td colspan="11" class="px-4 py-1.5 text-right text-gray-500">Week 28 total:</td>
+            <td class="px-2 py-1.5 text-right font-bold">40h</td>
+            <td class="px-2 py-1.5 text-right text-gray-600">€2,240</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Employee Group 3 (IC worker) -->
+    <div class="border rounded-md mb-3 border-l-4 border-l-amber-400">
+      <div class="flex items-center justify-between px-4 py-2.5 bg-amber-50/50 border-b">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-4 h-4 accent-blue-600">
+          <span class="font-medium text-sm text-gray-900">Pieter Vos</span>
+          <span class="text-[10px] px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">SAZ</span>
+          <span class="text-[10px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded font-bold">Working on SZV projects</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <span class="text-gray-500">1 project (IC)</span>
+          <span class="font-bold">16h</span>
+          <span class="text-gray-500">€1,120</span>
+          <span class="text-[10px] text-amber-600 font-medium">100% IC</span>
+        </div>
+      </div>
+      <table class="w-full text-xs">
+        <tbody>
+          <tr class="hover:bg-amber-50/30">
+            <td class="px-4 py-2 w-8"></td>
+            <td class="px-2 py-2"><span class="px-1 bg-amber-100 text-amber-700 text-[9px] font-bold rounded mr-1">IC</span><span class="font-mono text-gray-400">23250084</span> Edisonpark</td>
+            <td class="px-2 py-2 text-gray-500">—</td>
+            <td class="px-2 py-2 text-center text-gray-400">28</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center">4</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-center text-gray-300">-</td>
+            <td class="px-2 py-2 text-right font-bold">16h</td>
+            <td class="px-2 py-2 text-right text-gray-600">€1,120</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bulk Action Bar -->
+  <div class="px-6 py-3 border-t bg-white flex items-center gap-4">
+    <span class="text-sm font-medium text-gray-700">1 selected (Jan Bakker W28)</span>
+    <button class="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium">✓ Approve</button>
+    <button class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium">✗ Reject</button>
+    <button class="border text-gray-600 px-3 py-1.5 rounded text-sm">⬇ Export</button>
+  </div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div class="page">
+
+<div class="max-w-[900px] bg-white border rounded-lg p-6">
+<h2 class="text-lg font-bold mb-4">Design Notes</h2>
+
+<h3 class="font-bold text-sm mt-4 mb-2">Quick Filter Presets</h3>
+<table class="text-xs w-full border-collapse">
+  <tr class="border-b"><th class="py-2 text-left pr-4">Preset</th><th class="py-2 text-left pr-4">Auto-sets</th><th class="py-2 text-left pr-4">Group by</th><th class="py-2 text-left">Who sees it</th></tr>
+  <tr class="border-b"><td class="py-2 pr-4 font-medium">My Division</td><td class="py-2 pr-4">division = user's division, status = SUBMITTED</td><td class="py-2 pr-4">Employee</td><td class="py-2">Line managers (Cognito group: managers)</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4 font-medium">My Projects</td><td class="py-2 pr-4">projects = where user is projectManagerId, status = SUBMITTED</td><td class="py-2 pr-4">Project</td><td class="py-2">Project managers (managerId on Project table)</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4 font-medium">All Pending</td><td class="py-2 pr-4">status = SUBMITTED, no division/project filter</td><td class="py-2 pr-4">None (flat)</td><td class="py-2">Administrators</td></tr>
+</table>
+
+<h3 class="font-bold text-sm mt-6 mb-2">KPI Definitions</h3>
+<table class="text-xs w-full border-collapse">
+  <tr class="border-b"><th class="py-2 text-left pr-4">KPI</th><th class="py-2 text-left">Calculation</th></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Hours (employee/equipment)</td><td class="py-2">Sum of all entries. Equipment hours = entries where equipmentId is not null.</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Costs (employee/equipment)</td><td class="py-2">From TimesheetArticleEntry.calculatedAmount. Split by whether entry has equipmentId.</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Own / IC hours</td><td class="py-2">Own = project.divisionId == timesheet.divisionId. IC = different.</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Own / IC costs</td><td class="py-2">Same split applied to calculatedAmount.</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Resources</td><td class="py-2">Count distinct employeeIds / count distinct equipmentIds in filtered set.</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Pending</td><td class="py-2">Count of timesheets with status = SUBMITTED in current filter.</td></tr>
+</table>
+
+<h3 class="font-bold text-sm mt-6 mb-2">Group by Options</h3>
+<table class="text-xs w-full border-collapse">
+  <tr class="border-b"><th class="py-2 text-left pr-4">Group</th><th class="py-2 text-left pr-4">Header shows</th><th class="py-2 text-left">Rows show</th></tr>
+  <tr class="border-b"><td class="py-2 pr-4">None</td><td class="py-2 pr-4">—</td><td class="py-2">Flat: Employee | Division | Week | Mo-Su | Total | Cost | Status</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Employee</td><td class="py-2 pr-4">Name, div, total hours, cost, chargeability, leave</td><td class="py-2">Projects within employee's timesheets</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Project</td><td class="py-2 pr-4">Code, name, total hours, cost, budget bar, IC badge</td><td class="py-2">Employees on that project + equipment</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Division</td><td class="py-2 pr-4">Division name, own hours, IC hours, cost split</td><td class="py-2">Employees within division</td></tr>
+  <tr class="border-b"><td class="py-2 pr-4">Equipment</td><td class="py-2 pr-4">Equipment code+name, total hours, cost</td><td class="py-2">Employees + projects per equipment</td></tr>
+</table>
+
+<h3 class="font-bold text-sm mt-6 mb-2">Intercompany (IC) Logic</h3>
+<p class="text-xs text-gray-600 mb-2">IC = project.divisionId ≠ timesheet.divisionId (which equals the employee's division).</p>
+<ul class="text-xs text-gray-600 list-disc pl-4 space-y-1">
+  <li>IC entries get amber left-border + [IC] badge</li>
+  <li>In "Group by Division": IC section shows where employees went (outgoing) and who came in (incoming)</li>
+  <li>Equipment on IC projects is included in the IC cost/hours calculation</li>
+  <li>KPI "Own / IC" uses this split for both hours and costs</li>
+</ul>
+
+<h3 class="font-bold text-sm mt-6 mb-2">Costs Source</h3>
+<p class="text-xs text-gray-600">Costs come from <code>TimesheetArticleEntry.calculatedAmount</code> (pre-resolved by CAO calculator at submission time). If no article entries exist (e.g. old migrated data), cost shows "—". Equipment costs are the subset of article entries linked to equipment-bearing timesheet entries.</p>
+
+<h3 class="font-bold text-sm mt-6 mb-2">Server Changes Required</h3>
+<ul class="text-xs text-gray-600 list-disc pl-4 space-y-1">
+  <li>Add <code>projectDivisionId</code> to TimesheetProjectBreakdown (for IC detection)</li>
+  <li>Add <code>cost</code> field to TimesheetSearchItem (sum of calculatedAmount for the timesheet)</li>
+  <li>Add <code>projectCost</code> to each project breakdown item</li>
+  <li>KPI endpoint: add totalCosts, icHours, icCosts, employeeCount, equipmentCount</li>
+  <li>Support <code>groupBy</code> parameter in search query for server-side grouping (optional — can do client-side for &lt;200 items)</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
